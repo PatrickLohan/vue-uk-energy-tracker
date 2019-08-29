@@ -1,28 +1,29 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="html">
+  <h1>rainbows and unicorns</h1>
+  <energy-chart :apiData="apiData"></energy-chart>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import EnergyChart from '@/components/EnergyChart.vue';
 
 export default {
   name: 'app',
+  data(){
+    return {
+      apiData: {}
+    }
+  },
+  mounted(){
+    fetch('https://api.carbonintensity.org.uk/generation')
+    .then(res => res.json())
+    .then(data => this.apiData = data.data)
+  },
   components: {
-    HelloWorld
+    'energy-chart': EnergyChart
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="css" scoped>
 </style>
