@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <h1>rainbows and unicorns</h1>
-    <energy-chart :apiData="apiData"></energy-chart>
+    <energy-chart :apiGenerationMix="apiGenerationMix" :apiFrom="apiFrom" :apiTo="apiTo"></energy-chart>
   </div>
 </template>
 
@@ -13,13 +13,21 @@ export default {
   name: 'app',
   data(){
     return {
-      apiData: {}
+      apiGenerationMix: [],
+      apiFrom:"",
+      apiTo:""
+
     }
   },
   mounted(){
     fetch('https://api.carbonintensity.org.uk/generation')
     .then(res => res.json())
-    .then(data => this.apiData = data.data)
+    .then(data => {
+      this.apiGenerationMix = data.data.generationmix;
+      this.apiFrom = data.data.from;
+      this.apiTo = data.data.to;
+     });
+
   },
   components: {
     'energy-chart': EnergyChart

@@ -1,9 +1,11 @@
 <template lang="html">
+  <div id="chartShown">
   <GChart
     type="ColumnChart"
     :data="chartData"
     :options="chartOptions"
     />
+  </div>
 </template>
 
 <script>
@@ -13,29 +15,26 @@ export default {
   name: 'energy-chart',
   data(){
     return {
-      // chartData: this.getData,
       chartOptions: {
         chart: {
           title: 'UK Energy Use By Fuel',
-          // subtitle: 'Dank memes'
-          subtitle: this.apiData.from
+          subtitle: 'Dank memes'
         }
       }
     }
   },
   computed: {
     chartData: function(){
-      // return this.apiData.generationmix.forEach((object) => {
-        // return object
-      // })
       const energyArray = [['Fuel', 'Percentage']]
-      for (let object of this.apiData.generationmix){
+      for (let object of this.apiGenerationMix){
         energyArray.push([object.fuel, object.perc])
       }
       return energyArray;
     },
   },
-  props: ['apiData'],
+  mounted(){
+  },
+  props: ['apiGenerationMix', 'apiFrom', 'apiTo'],
   components: {
     GChart
   }
