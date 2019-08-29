@@ -1,6 +1,8 @@
 <template lang="html">
-  <h1>rainbows and unicorns</h1>
-  <energy-chart :apiData="apiData"></energy-chart>
+  <div>
+    <h1>rainbows and unicorns</h1>
+    <energy-chart :apiData="apiData"></energy-chart>
+  </div>
 </template>
 
 <script>
