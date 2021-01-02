@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h1>rainbows and unicorns</h1>
+    <h1>UK Energy Usage By Sector</h1>
     <energy-chart :apiGenerationMix="apiGenerationMix" :apiFrom="apiFrom" :apiTo="apiTo"></energy-chart>
   </div>
 </template>

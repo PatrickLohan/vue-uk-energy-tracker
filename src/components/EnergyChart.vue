@@ -1,9 +1,9 @@
-<template lang="html">
+<template>
   <div id="chartShown">
-  <GChart
-    type="ColumnChart"
-    :data="chartData"
-    :options="chartOptions"
+    <GChart
+      type="ColumnChart"
+      :data="chartData"
+      :options="chartOptions"
     />
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
       chartOptions: {
         chart: {
           title: 'UK Energy Use By Fuel',
-          subtitle: 'Dank memes'
+          subtitle: '% of total'
         }
       }
     }
@@ -29,7 +29,8 @@ export default {
       for (let object of this.apiGenerationMix){
         energyArray.push([object.fuel, object.perc])
       }
-      return energyArray;
+      let sortedArray = energyArray.sort(function(a, b) { return b[1] - a[1]; });
+      return sortedArray;
     },
   },
   mounted(){
